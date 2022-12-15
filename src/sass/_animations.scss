@@ -1,0 +1,22 @@
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  66% {
+    transform: translateY(25%);
+  }
+
+  100% {
+    transform: translateY(5%);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}

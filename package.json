@@ -1,0 +1,24 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartodziej777/ToDoApp.git"
+  },
+  "author": "Bartłomiej",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bartodziej777/ToDoApp/issues"
+  },
+  "homepage": "https://github.com/bartodziej777/ToDoApp#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.2",
+    "parcel": "^2.8.2",
+    "sass": "^1.56.2"
+  }
+}
