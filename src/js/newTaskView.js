@@ -25,6 +25,8 @@ class newTaskView extends View {
         </form>
       </div>`;
   }
+
+  _updateSubtask() {}
 }
 
 export default new newTaskView();
