@@ -2,8 +2,9 @@ import View from "./view";
 
 class newTaskView extends View {
   _parentElement;
+  _containerElement;
 
-  _generateMarkup(data) {
+  _generateMarkup() {
     this._parentElement = document.querySelector(".main");
     return `<div class="newTask__container">
         <form action="_" class="newTask">
@@ -26,7 +27,30 @@ class newTaskView extends View {
       </div>`;
   }
 
-  _updateSubtask() {}
+  addHandler(handler) {
+    document
+      .querySelector(".navigation__list")
+      .addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".navigation__element")?.dataset.element === "new"
+        )
+          return;
+        handler();
+      });
+  }
+
+  toggleView() {
+    this._containerElement = document.querySelector(".newTask__container");
+    if (
+      !this._containerElement.classList.contains("newTask__container--active")
+    ) {
+      this._containerElement.classList.add("newTask__container--active");
+      this._containerElement.classList.remove("newTask__container--unactive");
+      return;
+    }
+    this._containerElement.classList.remove("newTask__container--active");
+    this._containerElement.classList.add("newTask__container--unactive");
+  }
 }
 
 export default new newTaskView();
