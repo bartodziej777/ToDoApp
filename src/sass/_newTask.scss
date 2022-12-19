@@ -85,6 +85,8 @@
 
     &--added {
       color: grey;
+      background-color: $color-light-1;
+      font-style: italic;
     }
   }
 
@@ -94,9 +96,12 @@
     border-radius: 50%;
     font-size: 1.6rem;
     padding: 0.5rem;
+    transition: all 0.2s ease;
 
     &--added {
       background-color: $color-light-1;
+      color: #000;
+      transform: rotate(45deg);
     }
   }
 }

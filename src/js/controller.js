@@ -1,13 +1,18 @@
+import * as model from "./model";
 import newTaskView from "./newTaskView";
 
-const controlNewTaskView = function (element) {
-  //Showing and hiding element
+const controlNewTaskView = function () {
   newTaskView.toggleView();
+};
+
+const controlNewTaskViewSubtask = function (id) {
+  newTaskView.addSubtask(id);
 };
 
 const init = function () {
   newTaskView.render();
-  newTaskView.addHandler(controlNewTaskView);
+  newTaskView.addHandlerToggle(controlNewTaskView);
+  newTaskView.addHandlerSubtask(controlNewTaskViewSubtask);
 };
 
 init();
