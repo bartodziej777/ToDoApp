@@ -3,10 +3,12 @@ import View from "./view";
 class newTaskView extends View {
   _parentElement;
   _containerElement;
-  _subtaskId = 1;
+  _subtaskId;
 
   _generateMarkup() {
     this._parentElement = document.querySelector(".main");
+    this._clear();
+    this._subtaskId = 1;
     return `<div class="newTask__container">
         <form action="_" class="newTask">
           <h2 class="newTask__h2">New task</h2>
@@ -84,6 +86,7 @@ class newTaskView extends View {
 
   _newSubtask() {
     this._subtaskId++;
+    console.log(document.querySelector(".subtask__container"));
     const element = document.querySelector(".subtask__container");
     const markup = `
     <div class="subtask">
@@ -98,6 +101,15 @@ class newTaskView extends View {
     </div>`;
 
     element.insertAdjacentHTML("beforeend", markup);
+  }
+
+  addHandlerTask(handler) {
+    const btn = document.querySelector(".newTask__submit");
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!document.querySelector(".newTask__field").value.length) return;
+      handler();
+    });
   }
 }
 
