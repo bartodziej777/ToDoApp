@@ -46,11 +46,10 @@ class newTaskView extends View {
     document
       .querySelector(".navigation__list")
       .addEventListener("click", function (e) {
-        if (
-          !e.target.closest(".navigation__element")?.dataset.element === "new"
-        )
-          return;
-        handler();
+        //prettier-ignore
+        if (e.target.closest(".navigation__element")?.dataset.element === "new") {
+          handler();
+        }
       });
   }
 

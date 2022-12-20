@@ -43,4 +43,4 @@ init();
 // TO FIX
 // 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA ✅
 // 2. Scroll na dól po dodaniu subtaska
-// 3. Pojawianie sie modala
+// 3. Pojawianie sie modala ✅
