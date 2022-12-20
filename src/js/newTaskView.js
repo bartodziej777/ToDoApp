@@ -32,9 +32,8 @@ class newTaskView extends View {
 
   toggleView() {
     this._containerElement = document.querySelector(".newTask__container");
-    if (
-      !this._containerElement.classList.contains("newTask__container--active")
-    ) {
+    //prettier-ignore
+    if (!this._containerElement.classList.contains("newTask__container--active")) {
       this._containerElement.classList.add("newTask__container--active");
       this._containerElement.classList.remove("newTask__container--unactive");
       return;

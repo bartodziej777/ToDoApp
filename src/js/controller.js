@@ -10,16 +10,19 @@ const controlNewTaskViewSubtask = function (id) {
 };
 
 const controlAddTask = function (obj) {
-  newTaskView.toggleView();
-  newTaskView.render();
   model.addNewTask(obj);
+  allTaskViewHandler();
+};
+
+const allTaskViewHandler = function () {
+  newTaskView.render();
+  newTaskView.addHandlerSubtask(controlNewTaskViewSubtask);
+  newTaskView.addHandlerTask(controlAddTask);
 };
 
 const init = function () {
-  newTaskView.render();
   newTaskView.addHandlerToggle(controlNewTaskView);
-  newTaskView.addHandlerSubtask(controlNewTaskViewSubtask);
-  newTaskView.addHandlerTask(controlAddTask);
+  allTaskViewHandler();
 };
 
 init();
@@ -29,3 +32,4 @@ init();
 
 // TO FIX
 // 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA
+// 2. Scroll na dól po dodaniu subtaska
