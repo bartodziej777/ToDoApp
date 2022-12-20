@@ -6,7 +6,7 @@ class newTaskView extends View {
   _subtaskId;
 
   _generateMarkup() {
-    this._parentElement = document.querySelector(".main");
+    this._parentElement = document.querySelector(".modal");
     this._clear();
     this._subtaskId = 1;
     return `<div class="newTask__container">

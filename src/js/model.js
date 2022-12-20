@@ -11,6 +11,7 @@ export const addNewTask = function (obj) {
     id: uuidv4(),
     name: obj.taskName,
     subtasks: obj.subtasks,
+    pinned: false,
   };
 
   state.tasks.push(task);

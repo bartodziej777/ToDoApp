@@ -1,4 +1,5 @@
 import * as model from "./model";
+import listTaskView from "./listTaskView";
 import newTaskView from "./newTaskView";
 
 const controlNewTaskView = function () {
@@ -28,8 +29,18 @@ const init = function () {
 init();
 
 //TO DO
-// 1. NASTĘPNE WIDOKI
+// 1. WIDOK LISTY TASKÓW
+// 2. WIDOK KONKRETNEGO TASKU
+// 3. WIDOK PRZYPIĘTYCH TASKÓW
+// 4. SEARCH BAR DO SZUKANIA TASKÓW
+// 5. WIDOK SKOŃCZONYCH TASKÓW
+// 6. IMPLEMENTACJA LOCALSTORAGE
+// ---------
+// 1. DOKOŃCZYĆ RWD
+// 2. IKONY ZMIENIC NA HOSTOWANE OD SIEBIE
+// 3. DODAĆ PLIK README.MD
 
 // TO FIX
-// 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA
+// 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA ✅
 // 2. Scroll na dól po dodaniu subtaska
+// 3. Pojawianie sie modala
