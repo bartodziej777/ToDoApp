@@ -9,10 +9,10 @@ const controlNewTaskViewSubtask = function (id) {
   newTaskView.addSubtask(id);
 };
 
-const controlAddTask = function () {
+const controlAddTask = function (obj) {
   newTaskView.toggleView();
   newTaskView.render();
-  model.addTask();
+  model.addNewTask(obj);
 };
 
 const init = function () {

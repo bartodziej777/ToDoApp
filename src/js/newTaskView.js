@@ -86,7 +86,6 @@ class newTaskView extends View {
 
   _newSubtask() {
     this._subtaskId++;
-    console.log(document.querySelector(".subtask__container"));
     const element = document.querySelector(".subtask__container");
     const markup = `
     <div class="subtask">
@@ -108,7 +107,27 @@ class newTaskView extends View {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
       if (!document.querySelector(".newTask__field").value.length) return;
-      handler();
+
+      const taskName = document.querySelector(".newTask__field").value;
+      const subtaskFields = [...document.querySelectorAll(".subtask__field")];
+      const subtasks = subtaskFields
+        .filter((el) => el.value.length > 0 && el.disabled)
+        .map((el) => el.value)
+        .map(function (el) {
+          const obj = {
+            name: el,
+            done: false,
+          };
+          return obj;
+        });
+      console.log(subtasks);
+
+      const obj = {
+        taskName,
+        subtasks,
+      };
+
+      handler(obj);
     });
   }
 }
