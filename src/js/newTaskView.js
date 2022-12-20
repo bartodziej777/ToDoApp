@@ -120,7 +120,6 @@ class newTaskView extends View {
           };
           return obj;
         });
-      console.log(subtasks);
 
       const obj = {
         taskName,

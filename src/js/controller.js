@@ -25,4 +25,7 @@ const init = function () {
 init();
 
 //TO DO
-//1. DODAWANIE TASKA DO TABLICY
+// 1. NASTĘPNE WIDOKI
+
+// TO FIX
+// 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA
