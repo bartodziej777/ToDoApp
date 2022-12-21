@@ -21,9 +21,14 @@ const allTaskViewHandler = function () {
   newTaskView.addHandlerTask(controlAddTask);
 };
 
+const controlListTaskView = function () {
+  listTaskView.render(model.state.tasks);
+};
+
 const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
+  listTaskView.addHandlerToggle(controlListTaskView);
 };
 
 init();
@@ -44,3 +49,4 @@ init();
 // 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA ✅
 // 2. Scroll na dól po dodaniu subtaska
 // 3. Pojawianie sie modala ✅
+// 4. Schowanie modala po przełączeniu widoku (PRAWDOPODOBNIE: przerobic na dwie podfunkcje -> chowającą i pokazującą)
