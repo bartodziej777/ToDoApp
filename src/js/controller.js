@@ -23,6 +23,13 @@ const allTaskViewHandler = function () {
 
 const controlListTaskView = function () {
   listTaskView.render(model.state.tasks);
+  listTaskView.addHandlerPin(controlListTaskPin);
+};
+
+const controlListTaskPin = function (id) {
+  model.pinTask(id);
+  console.log(model.state.tasks, model.state.pinned);
+  listTaskView.render(model.state.tasks);
 };
 
 const init = function () {

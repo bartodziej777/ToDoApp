@@ -15,5 +15,16 @@ export const addNewTask = function (obj) {
   };
 
   state.tasks.push(task);
-  console.log(task);
+};
+
+export const pinTask = function (id) {
+  const index = state.tasks.findIndex((el) => el.id === id);
+  if (!state.tasks[index].pinned) {
+    state.tasks[index].pinned = true;
+    state.pinned.push(state.tasks[index]);
+  } else {
+    state.tasks[index].pinned = false;
+    const pinIndex = state.pinned.findIndex((el) => el.id === id);
+    state.pinned.splice(pinIndex, 1);
+  }
 };
