@@ -57,7 +57,7 @@ class completedTaskView extends View {
 
   addHandlerClean(handler) {
     document.querySelector(".content").addEventListener("click", function (e) {
-      if (e.target.closest(".btn__Clean")) {
+      if (e.target.closest(".btn__clean")) {
         handler();
       }
     });

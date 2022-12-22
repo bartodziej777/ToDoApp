@@ -26,32 +26,39 @@ const allTaskViewHandler = function () {
 
 const controlListTaskPin = function (id) {
   model.pinTask(id);
-  listTaskView.render(model.state.tasks);
+  if (model.state.view === "list") listTaskView.render(model.state.tasks);
+  if (model.state.view === "pinned") pinnedTaskView.render(model.state.tasks);
 };
 
 const controlListTaskComplete = function (id) {
   model.markAsDone(id);
-  listTaskView.render(model.state.tasks);
+  if (model.state.view === "list") listTaskView.render(model.state.tasks);
+  if (model.state.view === "pinned") pinnedTaskView.render(model.state.tasks);
 };
 
 const controlListTaskView = function () {
+  model.state.view = "list";
   listTaskView.render(model.state.tasks);
 };
 
 const controlPinnedTaskView = function () {
+  model.state.view = "pinned";
   pinnedTaskView.render(model.state.tasks);
 };
 
 const controlCompletedTaskView = function () {
+  model.state.view = "completed";
   completedTaskView.render(model.state.completed);
 };
 
 const controlRestoreHandler = function (id) {
   model.restoreTask(id);
+  completedTaskView.render(model.state.completed);
 };
 
 const controlCleanHandler = function () {
   model.cleanCompleted();
+  completedTaskView.render(model.state.completed);
 };
 
 const init = function () {

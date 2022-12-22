@@ -11,6 +11,12 @@ class pinnedTaskView extends View {
     </div>
     `;
     const arr = data.filter((el) => el.pinned === true);
+    if (!arr.length)
+      return `
+    <div class="listTask__container">
+    <h2 class="message">No pinned tasks :(</h2>
+    </div>
+    `;
 
     let markup = `<div class="listTask__container">`;
     //prettier-ignore
