@@ -4,7 +4,7 @@ export default class View {
 
   render(data) {
     this._data = data;
-    this._markup = this._generateMarkup(data);
+    this._markup = this._generateMarkup(this._data);
     this._parentElement.innerHTML = this._markup;
   }
   _clear() {

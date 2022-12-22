@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 export const state = {
   tasks: [], //Array of active tasks
   pinned: [], //Array of id's pinned tasks
-  deletd: [], //Array of deleted tasks,
+  completed: [], //Array of deleted tasks,
 };
 
 export const addNewTask = function (obj) {
@@ -27,4 +27,13 @@ export const pinTask = function (id) {
     const pinIndex = state.pinned.findIndex((el) => el.id === id);
     state.pinned.splice(pinIndex, 1);
   }
+};
+
+export const markAsDone = function (id) {
+  const index = state.tasks.findIndex((el) => el.id === id);
+  //if (!index) return;
+  //console.log(index);
+  const task = state.tasks.splice(index, 1);
+  //console.log(task);
+  state.completed.push(task);
 };

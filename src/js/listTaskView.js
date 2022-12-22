@@ -19,7 +19,7 @@ class listTaskView extends View {
         </div>
     </div>
     <div class="listTask__side">
-        <i class="listTask__icon fa-solid fa-check"></i>
+        <i class="listTask__icon listTask__icon-complete fa-solid fa-check"></i>
         <i class="listTask__icon listTask__icon-pin ${el.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
     </div>
     </div>`);
@@ -39,16 +39,18 @@ class listTaskView extends View {
   }
 
   addHandlerPin(handler) {
-    // document
-    //   .querySelector(".listTask__icon-pin")
-    //   .addEventListener("click", function (e) {
-    //     const id = e.target.closest(".listTask")?.dataset.id;
-    //     if (!id) return;
-
-    //     handler(id);
-    //   });
-    //[...document.querySelectorAll('.listTask__icon-pin')].forEach(el => el.addEventListener('click'))
     document.querySelector(".content").addEventListener("click", function (e) {
+      if (!e.target.closest(".listTask__icon-pin")) return;
+      const id = e.target.closest(".listTask")?.dataset.id;
+      if (!id) return;
+
+      handler(id);
+    });
+  }
+
+  addHanlderComplete(handler) {
+    document.querySelector(".content").addEventListener("click", function (e) {
+      if (!e.target.closest(".listTask__icon-complete")) return;
       const id = e.target.closest(".listTask")?.dataset.id;
       if (!id) return;
 

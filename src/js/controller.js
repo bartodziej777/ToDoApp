@@ -21,14 +21,18 @@ const allTaskViewHandler = function () {
   newTaskView.addHandlerTask(controlAddTask);
 };
 
-const controlListTaskView = function () {
-  listTaskView.render(model.state.tasks);
-  listTaskView.addHandlerPin(controlListTaskPin);
-};
-
+/*LIST VIEW */
 const controlListTaskPin = function (id) {
   model.pinTask(id);
-  console.log(model.state.tasks, model.state.pinned);
+  listTaskView.render(model.state.tasks);
+};
+
+const controlListTaskComplete = function (id) {
+  model.markAsDone(id);
+  listTaskView.render(model.state.tasks);
+};
+
+const controlListTaskView = function () {
   listTaskView.render(model.state.tasks);
 };
 
@@ -36,6 +40,8 @@ const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
   listTaskView.addHandlerToggle(controlListTaskView);
+  listTaskView.addHandlerPin(controlListTaskPin);
+  listTaskView.addHanlderComplete(controlListTaskComplete);
 };
 
 init();
