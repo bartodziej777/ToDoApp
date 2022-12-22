@@ -6,6 +6,7 @@ class newTaskView extends View {
   _subtaskId;
 
   _generateMarkup() {
+    document.querySelector(".content").classList.remove("blur");
     this._parentElement = document.querySelector(".modal");
     this._clear();
     this._subtaskId = 1;
@@ -36,10 +37,12 @@ class newTaskView extends View {
     if (!this._containerElement.classList.contains("newTask__container--active")) {
       this._containerElement.classList.add("newTask__container--active");
       this._containerElement.classList.remove("newTask__container--unactive");
+      document.querySelector('.content').classList.add("blur");
       return;
     }
     this._containerElement.classList.remove("newTask__container--active");
     this._containerElement.classList.add("newTask__container--unactive");
+    document.querySelector(".content").classList.remove("blur");
   }
 
   addHandlerToggle(handler) {

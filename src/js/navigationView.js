@@ -4,6 +4,7 @@ class navigationView extends View {
   _parentElement;
 
   _generateMarkup(data) {
+    document.querySelector(".content").classList.remove("blur");
     this._parentElement = document.querySelector(".navigation");
     return `
       <ul class="navigation__list">

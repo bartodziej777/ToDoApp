@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 export const state = {
   view: "",
   tasks: [], //Array of active tasks
@@ -8,7 +6,7 @@ export const state = {
 
 export const addNewTask = function (obj) {
   const task = {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     name: obj.taskName,
     subtasks: obj.subtasks,
     pinned: false,

@@ -4,6 +4,7 @@ class pinnedTaskView extends View {
   _parentElement = document.querySelector(".content");
 
   _generateMarkup(data) {
+    document.querySelector(".content").classList.remove("blur");
     if (!data.length)
       return `
     <div class="listTask__container">

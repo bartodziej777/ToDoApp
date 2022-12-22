@@ -101,3 +101,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.blur {
+  filter: blur(1rem);
+  -webkit-filter: blur(1rem);
+}
