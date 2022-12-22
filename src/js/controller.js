@@ -1,6 +1,7 @@
 import * as model from "./model";
 import listTaskView from "./listTaskView";
 import newTaskView from "./newTaskView";
+import pinnedTaskView from "./pinnedTaskView";
 
 const controlNewTaskView = function () {
   newTaskView.toggleView();
@@ -13,6 +14,7 @@ const controlNewTaskViewSubtask = function (id) {
 const controlAddTask = function (obj) {
   model.addNewTask(obj);
   allTaskViewHandler();
+  controlListTaskView();
 };
 
 const allTaskViewHandler = function () {
@@ -21,7 +23,6 @@ const allTaskViewHandler = function () {
   newTaskView.addHandlerTask(controlAddTask);
 };
 
-/*LIST VIEW */
 const controlListTaskPin = function (id) {
   model.pinTask(id);
   listTaskView.render(model.state.tasks);
@@ -36,18 +37,23 @@ const controlListTaskView = function () {
   listTaskView.render(model.state.tasks);
 };
 
+const controlPinnedTaskView = function () {
+  pinnedTaskView.render(model.state.pinned);
+};
+
 const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
   listTaskView.addHandlerToggle(controlListTaskView);
   listTaskView.addHandlerPin(controlListTaskPin);
   listTaskView.addHanlderComplete(controlListTaskComplete);
+  pinnedTaskView.addHandlerToggle(controlPinnedTaskView);
 };
 
 init();
 
 //TO DO
-// 1. WIDOK LISTY TASKÓW
+// 1. WIDOK LISTY TASKÓW ✅
 // 2. WIDOK KONKRETNEGO TASKU
 // 3. WIDOK PRZYPIĘTYCH TASKÓW
 // 4. SEARCH BAR DO SZUKANIA TASKÓW
