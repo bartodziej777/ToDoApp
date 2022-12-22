@@ -1,20 +1,19 @@
 import View from "./view";
 
-class pinnedTaskView extends View {
+class completedTaskView extends View {
   _parentElement = document.querySelector(".content");
 
   _generateMarkup(data) {
     if (!data.length)
       return `
     <div class="listTask__container">
-    <h2 class="message">No pinned tasks :(</h2>
+    <h2 class="message">No completed tasks :(</h2>
     </div>
     `;
-    const arr = data.filter((el) => el.pinned === true);
 
     let markup = `<div class="listTask__container">`;
     //prettier-ignore
-    arr.forEach(el => markup += `<div class="listTask" data-id="${el.id}">
+    data.forEach(el => markup += `<div class="listTask" data-id="${el.id}">
     <div class="listTask__content" >
         <div class="listTask__name">${el.name}</div>
         <div class="listTask__info">with ${el.subtasks.length} subtask(s)</div>
@@ -24,11 +23,13 @@ class pinnedTaskView extends View {
         </div>
     </div>
     <div class="listTask__side">
-        <i class="listTask__icon listTask__icon-complete fa-solid fa-check"></i>
-        <i class="listTask__icon listTask__icon-pin ${el.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
+        <i class="listTask__icon listTask__icon-restore fa-solid fa-rotate-left"></i>
     </div>
     </div>`);
-    markup += `</div>`;
+    markup += `
+    <button class="btn__clean">Clean completed tasks</button>
+    </div>
+    `;
     return markup;
   }
 
@@ -36,12 +37,31 @@ class pinnedTaskView extends View {
     document
       .querySelector(".navigation__list")
       .addEventListener("click", function (e) {
-        //prettier-ignore
-        if (e.target.closest(".navigation__element")?.dataset.element === "pinned") {
+        if (
+          e.target.closest(".navigation__element")?.dataset.element === "trash"
+        ) {
+          handler();
+        }
+      });
+  }
+
+  addHanlderRestore(handler) {
+    document.querySelector(".content").addEventListener("click", function (e) {
+      if (!e.target.closest(".listTask__icon-restore")) return;
+      const id = e.target.closest(".listTask")?.dataset.id;
+      if (!id) return;
+
+      handler(id);
+    });
+  }
+
+  addHandlerClean(handler) {
+    document.querySelector(".content").addEventListener("click", function (e) {
+      if (e.target.closest(".btn__Clean")) {
         handler();
       }
-      });
+    });
   }
 }
 
-export default new pinnedTaskView();
+export default new completedTaskView();

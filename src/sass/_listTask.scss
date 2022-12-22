@@ -81,3 +81,23 @@
     }
   }
 }
+
+.btn__clean {
+  background-color: $color-purple-1;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+.message {
+  color: $color-purple-1;
+  font-size: 2rem;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

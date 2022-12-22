@@ -1,4 +1,5 @@
 import * as model from "./model";
+import completedTaskView from "./completedTaskView";
 import listTaskView from "./listTaskView";
 import newTaskView from "./newTaskView";
 import pinnedTaskView from "./pinnedTaskView";
@@ -38,7 +39,19 @@ const controlListTaskView = function () {
 };
 
 const controlPinnedTaskView = function () {
-  pinnedTaskView.render(model.state.pinned);
+  pinnedTaskView.render(model.state.tasks);
+};
+
+const controlCompletedTaskView = function () {
+  completedTaskView.render(model.state.completed);
+};
+
+const controlRestoreHandler = function (id) {
+  model.restoreTask(id);
+};
+
+const controlCleanHandler = function () {
+  model.cleanCompleted();
 };
 
 const init = function () {
@@ -48,6 +61,9 @@ const init = function () {
   listTaskView.addHandlerPin(controlListTaskPin);
   listTaskView.addHanlderComplete(controlListTaskComplete);
   pinnedTaskView.addHandlerToggle(controlPinnedTaskView);
+  completedTaskView.addHandlerToggle(controlCompletedTaskView);
+  completedTaskView.addHanlderRestore(controlRestoreHandler);
+  completedTaskView.addHandlerClean(controlCleanHandler);
 };
 
 init();
@@ -55,10 +71,12 @@ init();
 //TO DO
 // 1. WIDOK LISTY TASKÓW ✅
 // 2. WIDOK KONKRETNEGO TASKU
-// 3. WIDOK PRZYPIĘTYCH TASKÓW
+// 3. WIDOK PRZYPIĘTYCH TASKÓW ✅
 // 4. SEARCH BAR DO SZUKANIA TASKÓW
-// 5. WIDOK SKOŃCZONYCH TASKÓW
+// 5. WIDOK SKOŃCZONYCH TASKÓW ✅
 // 6. IMPLEMENTACJA LOCALSTORAGE
+// 7. KOMUNIKATY PO PRZEŁĄCZNIU NA WIDOKI O NP. BRAKU PRZYPIĘTYCH TASKÓW ✅
+// 8. BLUR W TLE GDY MODAL JEST AKTYWNY
 // ---------
 // 1. DOKOŃCZYĆ RWD
 // 2. IKONY ZMIENIC NA HOSTOWANE OD SIEBIE

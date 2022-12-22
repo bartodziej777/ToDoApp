@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 export const state = {
+  view: "",
   tasks: [], //Array of active tasks
-  pinned: [], //Array of id's pinned tasks
   completed: [], //Array of deleted tasks,
 };
 
@@ -19,21 +19,23 @@ export const addNewTask = function (obj) {
 
 export const pinTask = function (id) {
   const index = state.tasks.findIndex((el) => el.id === id);
-  if (!state.tasks[index].pinned) {
-    state.tasks[index].pinned = true;
-    state.pinned.push(state.tasks[index]);
-  } else {
-    state.tasks[index].pinned = false;
-    const pinIndex = state.pinned.findIndex((el) => el.id === id);
-    state.pinned.splice(pinIndex, 1);
-  }
+  state.tasks[index].pinned
+    ? (state.tasks[index].pinned = false)
+    : (state.tasks[index].pinned = true);
 };
 
 export const markAsDone = function (id) {
   const index = state.tasks.findIndex((el) => el.id === id);
-  //if (!index) return;
-  //console.log(index);
   const task = state.tasks.splice(index, 1);
-  //console.log(task);
-  state.completed.push(task);
+  state.completed.push(...task);
+};
+
+export const restoreTask = function (id) {
+  const index = state.completed.findIndex((el) => el.id === id);
+  const task = state.completed.splice(index, 1);
+  state.tasks.push(...task);
+};
+
+export const cleanCompleted = function () {
+  state.completed.length = 0;
 };

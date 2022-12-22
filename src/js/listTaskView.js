@@ -5,7 +5,12 @@ class listTaskView extends View {
 
   _generateMarkup(data) {
     this._parentElement = document.querySelector(".content");
-    if (!data.length) return "";
+    if (!data.length)
+      return `
+    <div class="listTask__container">
+    <h2 class="message">No active tasks :(</h2>
+    </div>
+    `;
 
     let markup = `<div class="listTask__container">`;
     //prettier-ignore
