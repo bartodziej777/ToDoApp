@@ -33,14 +33,12 @@ class listTaskView extends View {
   }
 
   addHandlerToggle(handler) {
-    document
-      .querySelector(".navigation__list")
-      .addEventListener("click", function (e) {
-        //prettier-ignore
-        if (e.target.closest(".navigation__element")?.dataset.element === "list") {
+    document.querySelector("body").addEventListener("click", function (e) {
+      //prettier-ignore
+      if (e.target.closest(".navigation__element")?.dataset.element === "list") {
           handler();
         }
-      });
+    });
   }
 
   addHandlerPin(handler) {

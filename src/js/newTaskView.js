@@ -32,14 +32,22 @@ class newTaskView extends View {
   }
 
   toggleView(action = true) {
+    this._containerElement = document.querySelector(".newTask__container");
     if (action === false) {
+      if (
+        !this._containerElement.classList.contains(
+          "newTask__container--active"
+        ) &&
+        !this._containerElement.classList.contains(
+          "newTask__container--unactive"
+        )
+      )
+        return;
       this._containerElement.classList.remove("newTask__container--active");
       this._containerElement.classList.add("newTask__container--unactive");
       document.querySelector(".content").classList.remove("blur");
       return;
     }
-
-    this._containerElement = document.querySelector(".newTask__container");
     //prettier-ignore
     if (!this._containerElement.classList.contains("newTask__container--active")) {
       this._containerElement.classList.add("newTask__container--active");
@@ -53,14 +61,12 @@ class newTaskView extends View {
   }
 
   addHandlerToggle(handler) {
-    document
-      .querySelector(".navigation__list")
-      .addEventListener("click", function (e) {
-        //prettier-ignore
-        if (e.target.closest(".navigation__element")?.dataset.element === "new") {
+    document.querySelector("body").addEventListener("click", function (e) {
+      //prettier-ignore
+      if (e.target.closest(".navigation__element")?.dataset.element === "new") {
           handler();
         }
-      });
+    });
   }
 
   addHandlerSubtask(handler) {

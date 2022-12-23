@@ -3,6 +3,7 @@ import completedTaskView from "./completedTaskView";
 import listTaskView from "./listTaskView";
 import newTaskView from "./newTaskView";
 import pinnedTaskView from "./pinnedTaskView";
+import searchView from "./searchView";
 import taskView from "./taskView";
 
 const controlNewTaskView = function () {
@@ -90,10 +91,22 @@ const controlHandlerTaskClose = function () {
   if (model.state.view === "pinned") pinnedTaskView.render(model.state.tasks);
   if (model.state.view === "completed")
     completedTaskView.render(model.state.tasks);
+  if (model.state.view === "search") searchView.render();
+};
+
+const controlSearchViewToggle = function () {
+  taskView.render();
+  newTaskView.toggleView(false);
+  searchView.render();
+  model.state.view = "search";
+};
+
+const controlHandlerSearch = function (content) {
+  const results = model.searchTask(content);
+  searchView.renderResults(results);
 };
 
 const init = function () {
-  newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
   listTaskView.addHandlerToggle(controlListTaskView);
   listTaskView.addHandlerPin(controlListTaskPin);
@@ -106,26 +119,13 @@ const init = function () {
   taskView.addHandlerMarkAsDoneSubtask(controlHandlerTaskMarkSubtask);
   taskView.addHanlderPin(controlHandlerTaskPin);
   taskView.addHandlerClose(controlHandlerTaskClose);
+  newTaskView.addHandlerToggle(controlNewTaskView);
+  searchView.addHandlerToggle(controlSearchViewToggle);
+  searchView.addHandlerSearch(controlHandlerSearch);
 };
 
 init();
 
-//TO DO
-// 1. WIDOK LISTY TASKÓW ✅
-// 2. WIDOK KONKRETNEGO TASKU
-// 3. WIDOK PRZYPIĘTYCH TASKÓW ✅
-// 4. SEARCH BAR DO SZUKANIA TASKÓW
-// 5. WIDOK SKOŃCZONYCH TASKÓW ✅
-// 6. IMPLEMENTACJA LOCALSTORAGE
-// 7. KOMUNIKATY PO PRZEŁĄCZNIU NA WIDOKI O NP. BRAKU PRZYPIĘTYCH TASKÓW ✅
-// 8. BLUR W TLE GDY MODAL JEST AKTYWNY ✅
-// ---------
 // 1. DOKOŃCZYĆ RWD
 // 2. IKONY ZMIENIC NA HOSTOWANE OD SIEBIE
 // 3. DODAĆ PLIK README.MD
-
-// TO FIX
-// 1. UMOŻLIWIĆ INTERAKCJĘ PO DODANIU TASKA ✅
-// 2. Scroll na dól po dodaniu subtaska
-// 3. Pojawianie sie modala ✅
-// 4. Schowanie modala po przełączeniu widoku (PRAWDOPODOBNIE: przerobic na dwie podfunkcje -> chowającą i pokazującą)

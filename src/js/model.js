@@ -49,3 +49,13 @@ export const markAsDoneSubtask = function (id, index) {
     !state.tasks[state.tasks.findIndex((el) => el.id === id)].subtasks[index]
       .done;
 };
+
+export const searchTask = function (content) {
+  const arr = [];
+  state.tasks.forEach((el) => {
+    const name = el.name.toLowerCase();
+    if (name.includes(content.toLowerCase())) arr.push(el);
+  });
+
+  return arr;
+};
