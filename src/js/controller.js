@@ -6,8 +6,8 @@ import pinnedTaskView from "./pinnedTaskView";
 import taskView from "./taskView";
 
 const controlNewTaskView = function () {
-  newTaskView.toggleView();
   taskView.render();
+  newTaskView.toggleView();
 };
 
 const controlNewTaskViewSubtask = function (id) {
@@ -42,18 +42,21 @@ const controlListTaskView = function () {
   model.state.view = "list";
   listTaskView.render(model.state.tasks);
   taskView.render();
+  newTaskView.toggleView(false);
 };
 
 const controlPinnedTaskView = function () {
   model.state.view = "pinned";
   pinnedTaskView.render(model.state.tasks);
   taskView.render();
+  newTaskView.toggleView(false);
 };
 
 const controlCompletedTaskView = function () {
   model.state.view = "completed";
   completedTaskView.render(model.state.completed);
   taskView.render();
+  newTaskView.toggleView(false);
 };
 
 const controlRestoreHandler = function (id) {

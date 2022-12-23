@@ -31,7 +31,14 @@ class newTaskView extends View {
       </div>`;
   }
 
-  toggleView() {
+  toggleView(action = true) {
+    if (action === false) {
+      this._containerElement.classList.remove("newTask__container--active");
+      this._containerElement.classList.add("newTask__container--unactive");
+      document.querySelector(".content").classList.remove("blur");
+      return;
+    }
+
     this._containerElement = document.querySelector(".newTask__container");
     //prettier-ignore
     if (!this._containerElement.classList.contains("newTask__container--active")) {
@@ -42,7 +49,7 @@ class newTaskView extends View {
     }
     this._containerElement.classList.remove("newTask__container--active");
     this._containerElement.classList.add("newTask__container--unactive");
-    document.querySelector(".content").classList.remove("blur");
+    document.querySelector(".content")?.classList.remove("blur");
   }
 
   addHandlerToggle(handler) {
