@@ -67,6 +67,12 @@ const controlTaskView = function (id) {
   taskView.render(model.getTask(id));
 };
 
+const controlTaskMarkSubtask = function (id, index) {
+  console.log("a");
+  model.markAsDoneSubtask(id, index);
+  taskView.render(model.getTask(id));
+};
+
 const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
@@ -78,6 +84,7 @@ const init = function () {
   completedTaskView.addHanlderRestore(controlRestoreHandler);
   completedTaskView.addHandlerClean(controlCleanHandler);
   taskView.addHandler(controlTaskView);
+  taskView.addHandlerMarkAsDoneSubtask(controlTaskMarkSubtask);
 };
 
 init();

@@ -41,3 +41,11 @@ export const cleanCompleted = function () {
 export const getTask = function (id) {
   return state.tasks[state.tasks.findIndex((el) => el.id === id)];
 };
+
+export const markAsDoneSubtask = function (id, index) {
+  state.tasks[state.tasks.findIndex((el) => el.id === id)].subtasks[
+    index
+  ].done =
+    !state.tasks[state.tasks.findIndex((el) => el.id === id)].subtasks[index]
+      .done;
+};
