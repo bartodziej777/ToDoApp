@@ -4,7 +4,11 @@ class taskView extends View {
   _parentElement = document.querySelector(".wrapper");
 
   _generateMarkup(data) {
-    if (!data) return;
+    if (!data) {
+      document.querySelector(".content").classList.remove("blur");
+      return "";
+    }
+    document.querySelector(".content").classList.add("blur");
     let markup = "";
     //prettier-ignore
     markup += `<div class="task" data-id="${data.id}">
@@ -18,8 +22,8 @@ class taskView extends View {
           </div>
         </div>
         <div class="task__side">
-          <i class="task__icon fa-solid fa-xmark"></i>
-          <i id="task__icon-pin"class="task__icon task__icon-pin ${data.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
+          <i class="task__icon task__icon-close fa-solid fa-xmark"></i>
+          <i class="task__icon task__icon-pin ${data.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
         </div>
       </div>
       <div class="task__bottom">`;
@@ -63,6 +67,14 @@ class taskView extends View {
         const id = e.target.closest(".task")?.dataset.id;
         if (!id) return;
         handler(id);
+      }
+    });
+  }
+
+  addHandlerClose(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      if (e.target.classList.contains("task__icon-close")) {
+        handler();
       }
     });
   }

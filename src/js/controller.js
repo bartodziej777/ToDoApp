@@ -7,6 +7,7 @@ import taskView from "./taskView";
 
 const controlNewTaskView = function () {
   newTaskView.toggleView();
+  taskView.render();
 };
 
 const controlNewTaskViewSubtask = function (id) {
@@ -40,16 +41,19 @@ const controlListTaskComplete = function (id) {
 const controlListTaskView = function () {
   model.state.view = "list";
   listTaskView.render(model.state.tasks);
+  taskView.render();
 };
 
 const controlPinnedTaskView = function () {
   model.state.view = "pinned";
   pinnedTaskView.render(model.state.tasks);
+  taskView.render();
 };
 
 const controlCompletedTaskView = function () {
   model.state.view = "completed";
   completedTaskView.render(model.state.completed);
+  taskView.render();
 };
 
 const controlRestoreHandler = function (id) {
@@ -77,6 +81,14 @@ const controlHandlerTaskPin = function (id) {
   taskView.render(model.getTask(id));
 };
 
+const controlHandlerTaskClose = function () {
+  taskView.render();
+  if (model.state.view === "list") listTaskView.render(model.state.tasks);
+  if (model.state.view === "pinned") pinnedTaskView.render(model.state.tasks);
+  if (model.state.view === "completed")
+    completedTaskView.render(model.state.tasks);
+};
+
 const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
@@ -90,6 +102,7 @@ const init = function () {
   taskView.addHandler(controlTaskView);
   taskView.addHandlerMarkAsDoneSubtask(controlHandlerTaskMarkSubtask);
   taskView.addHanlderPin(controlHandlerTaskPin);
+  taskView.addHandlerClose(controlHandlerTaskClose);
 };
 
 init();
