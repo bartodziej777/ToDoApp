@@ -37,3 +37,7 @@ export const restoreTask = function (id) {
 export const cleanCompleted = function () {
   state.completed.length = 0;
 };
+
+export const getTask = function (id) {
+  return state.tasks[state.tasks.findIndex((el) => el.id === id)];
+};

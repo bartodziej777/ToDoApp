@@ -3,6 +3,7 @@ import completedTaskView from "./completedTaskView";
 import listTaskView from "./listTaskView";
 import newTaskView from "./newTaskView";
 import pinnedTaskView from "./pinnedTaskView";
+import taskView from "./taskView";
 
 const controlNewTaskView = function () {
   newTaskView.toggleView();
@@ -61,6 +62,11 @@ const controlCleanHandler = function () {
   completedTaskView.render(model.state.completed);
 };
 
+const controlTaskView = function (id) {
+  //console.log(model.getTask(id));
+  taskView.render(model.getTask(id));
+};
+
 const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   allTaskViewHandler();
@@ -71,6 +77,7 @@ const init = function () {
   completedTaskView.addHandlerToggle(controlCompletedTaskView);
   completedTaskView.addHanlderRestore(controlRestoreHandler);
   completedTaskView.addHandlerClean(controlCleanHandler);
+  taskView.addHandler(controlTaskView);
 };
 
 init();
