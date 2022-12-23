@@ -1,4 +1,4 @@
-export const state = {
+export let state = {
   view: "",
   tasks: [], //Array of active tasks
   completed: [], //Array of deleted tasks,
@@ -58,4 +58,14 @@ export const searchTask = function (content) {
   });
 
   return arr;
+};
+
+export const getData = function () {
+  const data = JSON.parse(localStorage.getItem("state"));
+  if (!data.tasks.length && !data.completed.length) return;
+  state = data;
+};
+
+export const saveData = function () {
+  localStorage.setItem("state", JSON.stringify(state));
 };

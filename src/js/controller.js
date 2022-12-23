@@ -106,6 +106,11 @@ const controlHandlerSearch = function (content) {
   searchView.renderResults(results);
 };
 
+const controlLocalStorage = function () {
+  window.addEventListener("load", model.getData);
+  window.addEventListener("beforeunload", model.saveData);
+};
+
 const init = function () {
   allTaskViewHandler();
   listTaskView.addHandlerToggle(controlListTaskView);
@@ -122,6 +127,7 @@ const init = function () {
   newTaskView.addHandlerToggle(controlNewTaskView);
   searchView.addHandlerToggle(controlSearchViewToggle);
   searchView.addHandlerSearch(controlHandlerSearch);
+  controlLocalStorage();
 };
 
 init();
