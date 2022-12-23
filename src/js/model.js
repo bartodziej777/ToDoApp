@@ -16,6 +16,7 @@ export const addNewTask = function (obj) {
 };
 
 export const pinTask = function (id) {
+  console.log("pin");
   const index = state.tasks.findIndex((el) => el.id === id);
   state.tasks[index].pinned
     ? (state.tasks[index].pinned = false)

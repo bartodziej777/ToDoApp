@@ -13,13 +13,13 @@ class taskView extends View {
           <div class="task__name">${data.name}</div>
           <div class="task__info">with ${data.subtasks.length} subtask(s)</div>
           <div class="task__progress">
-            <div class="task__progress-background" style="width:${(data.subtasks.filter(el => el.done === true).length/data.subtasks.length)*100}%"></div>
+            <div class="task__progress-background" style="width:${data.subtasks.length ? (data.subtasks.filter(el => el.done === true).length/data.subtasks.length)*100 : 100}%"></div>
             <p class="task__progress-value">${data.subtasks.filter(el => el.done === true).length}/${data.subtasks.length}</p>
           </div>
         </div>
         <div class="task__side">
           <i class="task__icon fa-solid fa-xmark"></i>
-          <i class="task__icon ${data.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
+          <i id="task__icon-pin"class="task__icon task__icon-pin ${data.pinned ? "listTask__icon--active" : ""} fa-solid fa-thumbtack"></i>
         </div>
       </div>
       <div class="task__bottom">`;
@@ -54,6 +54,16 @@ class taskView extends View {
       const id = e.target.closest(".task")?.dataset.id;
       if (!index || !id) return;
       handler(id, index);
+    });
+  }
+
+  addHanlderPin(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      if (e.target.classList.contains("task__icon-pin")) {
+        const id = e.target.closest(".task")?.dataset.id;
+        if (!id) return;
+        handler(id);
+      }
     });
   }
 }

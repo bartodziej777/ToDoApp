@@ -67,9 +67,13 @@ const controlTaskView = function (id) {
   taskView.render(model.getTask(id));
 };
 
-const controlTaskMarkSubtask = function (id, index) {
-  console.log("a");
+const controlHandlerTaskMarkSubtask = function (id, index) {
   model.markAsDoneSubtask(id, index);
+  taskView.render(model.getTask(id));
+};
+
+const controlHandlerTaskPin = function (id) {
+  model.pinTask(id);
   taskView.render(model.getTask(id));
 };
 
@@ -84,7 +88,8 @@ const init = function () {
   completedTaskView.addHanlderRestore(controlRestoreHandler);
   completedTaskView.addHandlerClean(controlCleanHandler);
   taskView.addHandler(controlTaskView);
-  taskView.addHandlerMarkAsDoneSubtask(controlTaskMarkSubtask);
+  taskView.addHandlerMarkAsDoneSubtask(controlHandlerTaskMarkSubtask);
+  taskView.addHanlderPin(controlHandlerTaskPin);
 };
 
 init();
