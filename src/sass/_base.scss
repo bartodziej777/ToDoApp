@@ -23,3 +23,17 @@ body {
   height: 100vh;
   background-color: $color-light-1;
 }
+
+.main {
+  margin: 0 auto;
+  @media only screen and (min-width: $bp-small) {
+    width: 80%;
+  }
+  @media only screen and (min-width: $bp-medium) {
+    width: 60%;
+  }
+  @media only screen and (min-width: $bp-large) {
+    width: 50%;
+    max-width: 120rem;
+  }
+}

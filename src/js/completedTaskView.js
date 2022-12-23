@@ -19,7 +19,7 @@ class completedTaskView extends View {
         <div class="listTask__name">${el.name}</div>
         <div class="listTask__info">with ${el.subtasks.length} subtask(s)</div>
         <div class="listTask__progress">
-          <div class="listTask__progress-background" style="width:${el.subtasks.filter(el => el.done === true).length}%"></div>
+          <div class="listTask__progress-background" style="width:${(el.subtasks.filter(el => el.done === true).length/el.subtasks.length)*100}%"></div>
           <p class="listTask__progress-value">${el.subtasks.filter(el => el.done === true).length}/${el.subtasks.length}</p>
         </div>
     </div>
